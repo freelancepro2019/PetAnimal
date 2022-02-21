@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PetAnimal</string>
+    <string name="app_name">Pet Care</string>
     <string name="username">إسم المستخدم</string>
     <string name="email_address">البريد الالكتروني</string>
     <string name="password">كلمة المرور</string>
