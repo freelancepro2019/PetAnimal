@@ -15,7 +15,7 @@
         android:requestLegacyExternalStorage="true"
         android:theme="@style/Theme.MedicineAlert">
         <activity
-            android:name="com.app.pet_animals.uis.activity_home.HomeActivity"
+            android:name="com.app.pet_animals.uis.activity_home_user.HomeActivityUser"
             android:exported="true" />
         <activity
             android:name="com.app.pet_animals.uis.activity_sign_up.SignUpActivity"

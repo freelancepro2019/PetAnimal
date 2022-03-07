@@ -1,36 +1,36 @@
-package com.app.pet_animals.uis.activity_home.fragments;
+package com.app.pet_animals.uis.activity_home_user.fragment_profile_user_module;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.app.pet_animals.R;
-import com.app.pet_animals.databinding.FragmentHomeBinding;
-import com.app.pet_animals.databinding.FragmentProfileBinding;
+import com.app.pet_animals.databinding.FragmentFavouriteUserBinding;
+import com.app.pet_animals.databinding.FragmentOrdersUserBinding;
 import com.app.pet_animals.uis.activity_base.FragmentBase;
-import com.app.pet_animals.uis.activity_home.HomeActivity;
+import com.app.pet_animals.uis.activity_home_user.HomeActivityUser;
 
-public class FragmentProfile extends FragmentBase {
-    private FragmentProfileBinding binding;
-    private HomeActivity activity;
+
+public class FragmentFavoriteUser extends FragmentBase {
+    private HomeActivityUser activity;
+    private FragmentFavouriteUserBinding binding;
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        activity = (HomeActivity) context;
+        activity = (HomeActivityUser) context;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_profile,container,false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_favourite_user,container,false);
         return binding.getRoot();
     }
 
@@ -41,12 +41,6 @@ public class FragmentProfile extends FragmentBase {
     }
 
     private void initView() {
-        binding.setLang(getLang());
-        binding.setModel(getUserModel());
-        binding.cardLogout.setOnClickListener(view -> {
-            activity.logout();
-        });
-
 
     }
 }

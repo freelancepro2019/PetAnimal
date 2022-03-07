@@ -8,7 +8,6 @@ import androidx.databinding.DataBindingUtil;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.app.pet_animals.R;
@@ -18,13 +17,14 @@ import com.app.pet_animals.models.UserModel;
 import com.app.pet_animals.tags.Common;
 import com.app.pet_animals.tags.Tags;
 import com.app.pet_animals.uis.activity_base.ActivityBase;
-import com.app.pet_animals.uis.activity_home.HomeActivity;
+import com.app.pet_animals.uis.activity_home_user.HomeActivityUser;
 import com.app.pet_animals.uis.activity_sign_up.SignUpActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends ActivityBase {
@@ -48,12 +48,12 @@ public class LoginActivity extends ActivityBase {
 
         launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
             if (req == 1 && result.getResultCode() == RESULT_OK) {
-                navigateToHomeActivity();
+                navigateToHomeActivity(getUserModel().getUser_type());
             }
         });
         binding.btnLogin.setOnClickListener(view -> {
             if (model.isDataValid(this)) {
-                Common.CloseKeyBoard(this,binding.edtEmail);
+                Common.CloseKeyBoard(this, binding.edtEmail);
                 login();
             }
         });
@@ -80,12 +80,12 @@ public class LoginActivity extends ActivityBase {
                     }
 
                 }).addOnFailureListener(e -> {
-                    if (e.getMessage()!=null&&e.getMessage().contains("no user record")){
-                        Toast.makeText(this, R.string.user_not_found, Toast.LENGTH_SHORT).show();
-                    }else {
-                        Common.createAlertDialog(LoginActivity.this, e.getMessage());
+            if (e.getMessage() != null && e.getMessage().contains("no user record")) {
+                Toast.makeText(this, R.string.user_not_found, Toast.LENGTH_SHORT).show();
+            } else {
+                Common.createAlertDialog(LoginActivity.this, e.getMessage());
 
-                    }
+            }
 
             dialog.dismiss();
         });
@@ -93,16 +93,20 @@ public class LoginActivity extends ActivityBase {
 
     private void getUserById(String user_id, ProgressDialog dialog) {
         dRef = FirebaseDatabase.getInstance().getReference();
-        dRef.child(Tags.table_patients);
-        dRef.child(user_id).addListenerForSingleValueEvent(new ValueEventListener() {
+        Query query = dRef.child(Tags.table_users)
+                .orderByChild("user_id")
+                .equalTo(user_id);
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                 dialog.dismiss();
                 if (snapshot.getValue() != null) {
-                    UserModel userModel = snapshot.getValue(UserModel.class);
+                    UserModel userModel = snapshot.child(user_id).getValue(UserModel.class);
                     if (userModel != null) {
                         setUserModel(userModel);
-                        navigateToHomeActivity();
+                        navigateToHomeActivity(userModel.getUser_type());
                     } else {
                         Common.createAlertDialog(LoginActivity.this, getString(R.string.error_msg));
                     }
@@ -110,20 +114,29 @@ public class LoginActivity extends ActivityBase {
                     Toast.makeText(LoginActivity.this, R.string.user_not_found, Toast.LENGTH_SHORT).show();
 
                 }
+
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
-                Log.e("error_login", error.getMessage());
             }
         });
+
     }
 
-    private void navigateToHomeActivity() {
-        Intent intent = new Intent(this, HomeActivity.class);
-        startActivity(intent);
-        finish();
+    private void navigateToHomeActivity(String user_type) {
+        Intent intent = null;
+        if (user_type.equals(Tags.user_animal_owner)){
+            intent = new Intent(this, HomeActivityUser.class);
+            startActivity(intent);
+            finish();
+        }else if (user_type.equals(Tags.user_doctor)){
+
+        }else {
+
+        }
+
     }
 
     private void navigateToSignUpActivity() {

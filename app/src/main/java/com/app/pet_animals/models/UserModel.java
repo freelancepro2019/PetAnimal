@@ -12,11 +12,12 @@ public class UserModel implements Serializable {
     private String email;
     private String password;
     private String user_type;
+    private float rate;
 
     public UserModel() {
     }
 
-    public UserModel(String user_id, String first_name, String last_name, String phone_code, String phone, String email, String password,String user_type) {
+    public UserModel(String user_id, String first_name, String last_name, String phone_code, String phone, String email, String password, String user_type) {
         this.user_id = user_id;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -25,6 +26,7 @@ public class UserModel implements Serializable {
         this.email = email;
         this.password = password;
         this.user_type = user_type;
+        this.rate = 0.0f;
     }
 
     public String getUser_id() {
@@ -97,5 +99,13 @@ public class UserModel implements Serializable {
 
     public void setUser_type(String user_type) {
         this.user_type = user_type;
+    }
+
+    public float getRate() {
+        return rate;
+    }
+
+    public void setRate(float rate) {
+        this.rate = rate;
     }
 }

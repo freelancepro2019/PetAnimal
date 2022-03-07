@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profile_navigation"
+    app:startDestination="@id/fragmentProfileUser">
+
+    <fragment
+        android:id="@+id/fragmentProfileUser"
+        android:name="com.app.pet_animals.uis.activity_home_user.fragment_profile_user_module.FragmentProfileUser"
+        android:label=""
+        tools:layout="@layout/fragment_profile_user"
+
+        />
+
+    <fragment
+        android:id="@+id/fragmentOrdersUser"
+        android:name="com.app.pet_animals.uis.activity_home_user.fragment_profile_user_module.FragmentOrdersUser"
+        android:label=""
+        tools:layout="@layout/fragment_orders_user"
+
+        />
+
+    <fragment
+        android:id="@+id/fragmentFavoriteUser"
+        android:name="com.app.pet_animals.uis.activity_home_user.fragment_profile_user_module.FragmentFavoriteUser"
+        android:label=""
+        tools:layout="@layout/fragment_favourite_user"
+
+        />
+
+</navigation>

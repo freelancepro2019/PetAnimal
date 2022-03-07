@@ -9,6 +9,7 @@ import androidx.databinding.ObservableField;
 
 import com.app.pet_animals.BR;
 import com.app.pet_animals.R;
+import com.app.pet_animals.tags.Tags;
 
 import java.io.Serializable;
 
@@ -27,7 +28,6 @@ public class SignUpModel extends BaseObservable implements Serializable {
     public ObservableField<String> error_email = new ObservableField<>();
     public ObservableField<String> error_password = new ObservableField<>();
     public ObservableField<String> error_birth_date = new ObservableField<>();
-    public ObservableField<String> error_car_number = new ObservableField<>();
 
     public SignUpModel() {
         imagePath ="";
@@ -37,7 +37,7 @@ public class SignUpModel extends BaseObservable implements Serializable {
         phone = "";
         email = "";
         password = "";
-        userType = "normal";
+        userType = Tags.user_animal_owner;
 
     }
 

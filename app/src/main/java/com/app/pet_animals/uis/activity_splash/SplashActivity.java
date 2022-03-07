@@ -9,7 +9,7 @@ import android.os.Bundle;
 import com.app.pet_animals.R;
 import com.app.pet_animals.databinding.ActivitySplashBinding;
 import com.app.pet_animals.uis.activity_base.ActivityBase;
-import com.app.pet_animals.uis.activity_home.HomeActivity;
+import com.app.pet_animals.uis.activity_home_user.HomeActivityUser;
 import com.app.pet_animals.uis.activity_login.LoginActivity;
 
 import java.util.concurrent.TimeUnit;
@@ -63,7 +63,7 @@ public class SplashActivity extends ActivityBase {
     }
 
     private void navigateToHomeActivity() {
-        Intent intent = new Intent(this, HomeActivity.class);
+        Intent intent = new Intent(this, HomeActivityUser.class);
         startActivity(intent);
         finish();
     }

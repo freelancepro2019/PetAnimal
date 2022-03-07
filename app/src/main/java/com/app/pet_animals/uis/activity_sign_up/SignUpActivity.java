@@ -1,22 +1,16 @@
 package com.app.pet_animals.uis.activity_sign_up;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import com.app.pet_animals.R;
@@ -26,10 +20,6 @@ import com.app.pet_animals.models.UserModel;
 import com.app.pet_animals.tags.Common;
 import com.app.pet_animals.tags.Tags;
 import com.app.pet_animals.uis.activity_base.ActivityBase;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.SuccessContinuation;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -37,13 +27,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
-import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
 import java.util.UUID;
-import java.util.concurrent.Executor;
 
 public class SignUpActivity extends ActivityBase {
     private ActivitySignUpBinding binding;
@@ -178,7 +163,7 @@ public class SignUpActivity extends ActivityBase {
         UserModel userModel = new UserModel(user_id, model.getFirstName(), model.getLastName(), model.getPhoneCode(), model.getPhone(), model.getEmail(), model.getPassword(), model.getUserType());
         userModel.setImage_url(imageUrl);
         dRef = FirebaseDatabase.getInstance().getReference();
-        dRef.child(Tags.table_patients)
+        dRef.child(Tags.table_users)
                 .child(user_id)
                 .setValue(userModel)
                 .addOnSuccessListener(unused -> {

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_navigation"
+    app:startDestination="@id/fragmentHomeUser"
+    >
+
+    <fragment
+        android:id="@+id/fragmentHomeUser"
+        android:name="com.app.pet_animals.uis.activity_home_user.fragment_home_user_module.FragmentHomeUser"
+        tools:layout="@layout/fragment_home_user"
+        android:label=""
+
+        />
+
+</navigation>
