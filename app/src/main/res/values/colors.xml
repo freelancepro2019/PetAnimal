@@ -17,6 +17,8 @@
     <color name="gray8">#f7f7fb</color>
     <color name="transparent">#00000000</color>
     <color name="rate">#FFC107</color>
+    <color name="red">#D70303</color>
+
 
 
 </resources>

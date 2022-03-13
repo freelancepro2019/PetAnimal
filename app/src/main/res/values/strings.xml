@@ -43,4 +43,15 @@
     <string name="no_data">لا يوجد عناصر لعرضها</string>
     <string name="filter_by">تصفية حسب:</string>
     <string name="filter">تطبيق</string>
+    <string name="All">الكل</string>
+    <string name="search_result">نتائج البحث</string>
+    <string name="no_search_result">لا توجد نتائج البحث</string>
+    <string name="add_pet_animal">إضافة حيوان اليف</string>
+    <string name="photo">صورة</string>
+    <string name="name">الإسم</string>
+    <string name="specialization">الفصيلة</string>
+    <string name="add">إضافة</string>
+    <string name="ch_photo">إختر الصورة</string>
+    <string name="update">تعديل</string>
+    <string name="no_pet_animal">لا توجد حيوانات اليفة لعرضها</string>
 </resources>

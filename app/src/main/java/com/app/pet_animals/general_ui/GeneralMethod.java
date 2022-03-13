@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.databinding.BindingAdapter;
@@ -38,6 +39,22 @@ public class GeneralMethod {
             Picasso.get().load(R.drawable.avatar).into(view);
 
         }
+    }
+
+    @BindingAdapter("animalImage")
+    public static void animal_image(View view, String animalImage) {
+        if (animalImage!=null){
+            if (view instanceof CircleImageView){
+                CircleImageView circleImageView = (CircleImageView) view;
+                Picasso.get().load(Uri.parse(animalImage)).into(circleImageView);
+
+            }else if (view instanceof ImageView){
+                ImageView imageView = (ImageView) view;
+                Picasso.get().load(Uri.parse(animalImage)).into(imageView);
+
+            }
+        }
+
     }
     @BindingAdapter("userType")
     public static void user_type(TextView view, String userType) {

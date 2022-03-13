@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +46,10 @@ public class FragmentProfileUser extends FragmentBase {
         binding.setOrderCount("0");
         binding.cardLogout.setOnClickListener(view -> {
             activity.logout();
+        });
+
+        binding.llAnimals.setOnClickListener(view -> {
+            Navigation.findNavController(view).navigate(R.id.fragmentAnimalsUser);
         });
 
 

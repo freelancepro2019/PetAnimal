@@ -22,6 +22,7 @@ public class SignUpModel extends BaseObservable implements Serializable {
     private String email;
     private String password;
     private String userType;
+    private String filter_attr;
     public ObservableField<String> error_first_name = new ObservableField<>();
     public ObservableField<String> error_last_name = new ObservableField<>();
     public ObservableField<String> error_phone = new ObservableField<>();
@@ -38,6 +39,7 @@ public class SignUpModel extends BaseObservable implements Serializable {
         email = "";
         password = "";
         userType = Tags.user_animal_owner;
+        filter_attr = Tags.user_animal_owner;
 
     }
 
@@ -175,7 +177,19 @@ public class SignUpModel extends BaseObservable implements Serializable {
 
     public void setUserType(String userType) {
         this.userType = userType;
+        if (userType.equals(Tags.user_animal_owner)){
+            setFilter_attr(Tags.user_animal_owner);
+        }else {
+            setFilter_attr(Tags.filter_service);
+        }
         notifyPropertyChanged(BR.userType);
     }
 
+    public String getFilter_attr() {
+        return filter_attr;
+    }
+
+    public void setFilter_attr(String filter_attr) {
+        this.filter_attr = filter_attr;
+    }
 }

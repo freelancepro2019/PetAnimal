@@ -29,4 +29,20 @@
 
         />
 
+    <fragment
+        android:id="@+id/fragmentAnimalsUser"
+        android:name="com.app.pet_animals.uis.activity_home_user.fragment_profile_user_module.FragmentAnimalsUser"
+        android:label=""
+        tools:layout="@layout/fragment_animal_user"
+
+        />
+
+    <fragment
+        android:id="@+id/fragmentAddAnimalsUser"
+        android:name="com.app.pet_animals.uis.activity_home_user.fragment_profile_user_module.FragmentUserAddPetAnimal"
+        android:label=""
+        tools:layout="@layout/fragment_user_add_animal"
+
+        />
+
 </navigation>

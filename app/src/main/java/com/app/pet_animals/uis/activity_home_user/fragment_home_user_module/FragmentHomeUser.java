@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.util.Log;
@@ -40,7 +41,7 @@ public class FragmentHomeUser extends FragmentBase {
     private FragmentHomeUserBinding binding;
     private ServiceAdapter adapter;
     private DatabaseReference dRef;
-    private String filterBy =Tags.user_housing_owner;
+    private String filterBy ="all";
     private String dialogFilterQuery = filterBy;
     @Override
     public void onAttach(@NonNull Context context) {
@@ -70,8 +71,53 @@ public class FragmentHomeUser extends FragmentBase {
         binding.recViewLayout.swipeRefresh.setColorSchemeResources(R.color.colorPrimary);
         binding.recViewLayout.swipeRefresh.setOnRefreshListener(this::filter);
         binding.recViewLayout.tvNoData.setText(R.string.no_data);
+        binding.recViewLayout.tvNoData.setVisibility(View.GONE);
+
         binding.imageFilter.setOnClickListener(view -> showFilterDialog());
-        filter();
+        binding.cardSearch.setOnClickListener(view -> {
+            Navigation.findNavController(view).navigate(R.id.fragmentUserSearch);
+        });
+        getAllServiceProviders();
+    }
+
+    private void getAllServiceProviders() {
+        binding.recViewLayout.swipeRefresh.setRefreshing(true);
+        binding.recViewLayout.tvNoData.setVisibility(View.GONE);
+        Query query = dRef.child(Tags.table_users);
+        query.orderByChild("filter_attr")
+                .equalTo(Tags.filter_service)
+                .limitToFirst(20)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        binding.recViewLayout.swipeRefresh.setRefreshing(false);
+                        List<UserModel> serviceList = new ArrayList<>();
+                        if (snapshot.getValue()!=null){
+                            for (DataSnapshot ds :snapshot.getChildren()){
+                                UserModel userModel = ds.getValue(UserModel.class);
+                                if (userModel!=null){
+                                    serviceList.add(userModel);
+                                }
+                            }
+
+                            if (serviceList.size()>0){
+                                adapter.updateList(sortedList(serviceList));
+                                binding.recViewLayout.tvNoData.setVisibility(View.GONE);
+                            }else {
+                                binding.recViewLayout.tvNoData.setVisibility(View.VISIBLE);
+
+                            }
+                        }else {
+                            binding.recViewLayout.tvNoData.setVisibility(View.VISIBLE);
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(activity, error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     private void filter() {
@@ -98,7 +144,6 @@ public class FragmentHomeUser extends FragmentBase {
                                 adapter.updateList(sortedList(guidesList));
                                 binding.recViewLayout.tvNoData.setVisibility(View.GONE);
                             }else {
-                                Log.e("f","f");
                                 binding.recViewLayout.tvNoData.setVisibility(View.VISIBLE);
 
                             }
@@ -127,11 +172,19 @@ public class FragmentHomeUser extends FragmentBase {
         FilterDialogBinding filterDialogBinding = DataBindingUtil.inflate(LayoutInflater.from(activity),R.layout.filter_dialog,null,false);
         if (filterBy.equals(Tags.user_housing_owner)){
             filterDialogBinding.rbHouse.setChecked(true);
-        }else {
+        }else if (filterBy.equals(Tags.user_doctor)){
             filterDialogBinding.rbDoctor.setChecked(true);
+
+        }else {
+            filterDialogBinding.rbAll.setChecked(true);
 
         }
 
+        filterDialogBinding.rbAll.setOnCheckedChangeListener((compoundButton, b) -> {
+            if (b){
+                dialogFilterQuery ="all";
+            }
+        });
         filterDialogBinding.rbDoctor.setOnCheckedChangeListener((compoundButton, b) -> {
             if (b){
                 dialogFilterQuery = Tags.user_doctor;
@@ -146,7 +199,13 @@ public class FragmentHomeUser extends FragmentBase {
 
         filterDialogBinding.btnFilter.setOnClickListener(view -> {
             filterBy = dialogFilterQuery;
-            filter();
+
+            if (dialogFilterQuery.equals("all")){
+                getAllServiceProviders();
+            }else {
+                filter();
+            }
+
             dialog.dismiss();
         });
 

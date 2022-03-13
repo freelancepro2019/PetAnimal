@@ -160,7 +160,8 @@ public class SignUpActivity extends ActivityBase {
     }
 
     private void signUp(String user_id, String imageUrl, ProgressDialog dialog) {
-        UserModel userModel = new UserModel(user_id, model.getFirstName(), model.getLastName(), model.getPhoneCode(), model.getPhone(), model.getEmail(), model.getPassword(), model.getUserType());
+
+        UserModel userModel = new UserModel(user_id, model.getFirstName(), model.getLastName(), model.getPhoneCode(), model.getPhone(), model.getEmail(), model.getPassword(), model.getUserType(),model.getFilter_attr());
         userModel.setImage_url(imageUrl);
         dRef = FirebaseDatabase.getInstance().getReference();
         dRef.child(Tags.table_users)

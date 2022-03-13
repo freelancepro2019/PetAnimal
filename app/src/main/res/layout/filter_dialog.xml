@@ -54,6 +54,21 @@
 
                 >
                 <RadioButton
+                    android:id="@+id/rbAll"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:buttonTint="@color/colorPrimary"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15sp"
+                    android:text="@string/All"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:background="@color/white"
+
+
+                    />
+
+                <RadioButton
                     android:id="@+id/rbHouse"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
@@ -64,6 +79,7 @@
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
                     android:background="@color/white"
+                    android:layout_marginTop="5dp"
 
 
                     />

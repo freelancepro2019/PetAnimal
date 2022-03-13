@@ -127,13 +127,13 @@ public class LoginActivity extends ActivityBase {
 
     private void navigateToHomeActivity(String user_type) {
         Intent intent = null;
-        if (user_type.equals(Tags.user_animal_owner)){
+        if (user_type.equals(Tags.user_animal_owner)) {
             intent = new Intent(this, HomeActivityUser.class);
             startActivity(intent);
             finish();
-        }else if (user_type.equals(Tags.user_doctor)){
+        } else if (user_type.equals(Tags.user_doctor)) {
 
-        }else {
+        } else {
 
         }
 
