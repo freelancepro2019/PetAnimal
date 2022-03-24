@@ -54,4 +54,21 @@
     <string name="ch_photo">إختر الصورة</string>
     <string name="update">تعديل</string>
     <string name="no_pet_animal">لا توجد حيوانات اليفة لعرضها</string>
+    <string name="add_post">إضافة طلب</string>
+    <string name="details">التفاصيل</string>
+    <string name="book_now">إرسال طلب</string>
+    <string name="search">بحث</string>
+    <string name="add_rate">إضافة تقييم</string>
+    <string name="accept">قبول</string>
+    <string name="refuse">رفض</string>
+    <string name="no_orders">لا توجد طلبات لعرضها</string>
+    <string name="sar">ر.س</string>
+    <string name="completed">مكتملة</string>
+    <string name="refused">مرفوضة</string>
+    <string name="status_new">جديد</string>
+    <string name="accepted">تم القبول</string>
+    <string name="fav">المفضلة</string>
+    <string name="unfav">إلغاء المفضلة</string>
+    <string name="already_fav">تم الإضافة الى المفضلة من قبل</string>
+    <string name="no_fav">لا توجد مفضلة</string>
 </resources>

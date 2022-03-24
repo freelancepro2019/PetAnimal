@@ -27,17 +27,25 @@
         <entry key="..\:/works/Courses/work_android/FreeLancer/MedicineAlert/app/src/main/res/layout/medicine_row.xml" value="0.5028142589118199" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/MedicineAlert/app/src/main/res/menu/menu.xml" value="0.22083333333333333" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/drawable/bottom_icon_selection.xml" value="0.24114583333333334" />
+        <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/drawable/circle_stroke_gray.xml" value="0.24114583333333334" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/drawable/circle_wihte.xml" value="0.24114583333333334" />
+        <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/drawable/ic_call2.xml" value="0.24114583333333334" />
+        <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/drawable/ic_empty_heart.xml" value="0.24114583333333334" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/drawable/ic_empty_home.xml" value="0.24114583333333334" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/drawable/ic_star.xml" value="0.24114583333333334" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/drawable/icon_profile_selection.xml" value="0.24114583333333334" />
+        <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/drawable/rounded_primary_btn_enabled.xml" value="0.24114583333333334" />
+        <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/drawable/rounded_rate.xml" value="0.24114583333333334" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/drawable/rounded_white_top.xml" value="0.24114583333333334" />
+        <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/activity_add_post.xml" value="0.2" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/activity_home.xml" value="0.22083333333333333" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/activity_home_user.xml" value="0.22083333333333333" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/activity_login.xml" value="0.2" />
-        <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/activity_sign_up.xml" value="0.2" />
+        <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/activity_sign_up.xml" value="0.264" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/activity_splash.xml" value="0.152" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/animal_row.xml" value="0.152" />
+        <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/bottom_sheet_rate.xml" value="0.22083333333333333" />
+        <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/favorite_row.xml" value="0.22083333333333333" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/filter_dialog.xml" value="0.22083333333333333" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/fragment_animal_user.xml" value="0.22083333333333333" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/fragment_favourite_user.xml" value="0.22083333333333333" />
@@ -46,12 +54,19 @@
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/fragment_home_user.xml" value="0.22083333333333333" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/fragment_home_user_search.xml" value="0.536" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/fragment_orders.xml" value="0.22083333333333333" />
+        <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/fragment_orders_user.xml" value="0.1925925925925926" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/fragment_profile_base.xml" value="0.22083333333333333" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/fragment_profile_base_user.xml" value="0.22083333333333333" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/fragment_profile_user.xml" value="0.22083333333333333" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/fragment_user_add_animal.xml" value="0.22083333333333333" />
+        <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/fragment_user_posts.xml" value="0.22083333333333333" />
+        <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/fragment_user_search.xml" value="0.22083333333333333" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/recyclerview_layout.xml" value="0.22083333333333333" />
+        <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/rounded_rate.xml" value="0.22083333333333333" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/service_row.xml" value="0.22083333333333333" />
+        <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/spinner_row.xml" value="0.22083333333333333" />
+        <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/user_order_row.xml" value="0.4" />
+        <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/user_post_row.xml" value="0.2" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/menu/bottom_navigation_menu_user.xml" value="0.22083333333333333" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/Torism/app/src/main/res/drawable/ic_car.xml" value="0.24114583333333334" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/Torism/app/src/main/res/layout/activity_login.xml" value="0.21654749744637386" />

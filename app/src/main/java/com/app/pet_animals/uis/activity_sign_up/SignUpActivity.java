@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.app.pet_animals.R;
@@ -20,7 +21,10 @@ import com.app.pet_animals.models.UserModel;
 import com.app.pet_animals.tags.Common;
 import com.app.pet_animals.tags.Tags;
 import com.app.pet_animals.uis.activity_base.ActivityBase;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -47,6 +51,32 @@ public class SignUpActivity extends ActivityBase {
 
     private void initView() {
         model = new SignUpModel();
+        if (getUserModel() != null) {
+            model.setImagePath(getUserModel().getImage_url());
+            model.setFirstName(getUserModel().getFirst_name());
+            model.setLastName(getUserModel().getLast_name());
+            model.setPhoneCode(getUserModel().getPhone_code());
+            model.setPhone(getUserModel().getPhone());
+            model.setUserType(getUserModel().getUser_type());
+            model.setEmail(getUserModel().getEmail());
+            model.setPassword(getUserModel().getPassword());
+            model.setFilter_attr(getUserModel().getFilter_attr());
+
+            binding.flImage.setVisibility(View.GONE);
+            if (getUserModel().getUser_type().equals(Tags.user_animal_owner)) {
+                binding.animalOwner.setChecked(true);
+            } else if (getUserModel().getUser_type().equals(Tags.user_doctor)) {
+                binding.doctor.setChecked(true);
+            } else if (getUserModel().getUser_type().equals(Tags.user_housing_owner)) {
+                binding.housingOwner.setChecked(true);
+            }
+            binding.llType.setVisibility(View.GONE);
+            binding.tv.setText(R.string.update_profile);
+            binding.btnSignUp.setText(R.string.update_profile);
+            binding.llLogin.setVisibility(View.GONE);
+
+
+        }
         binding.setModel(model);
 
         binding.llLogin.setOnClickListener(view -> {
@@ -55,7 +85,13 @@ public class SignUpActivity extends ActivityBase {
 
         binding.btnSignUp.setOnClickListener(view -> {
             if (model.isDataValid(this)) {
-                createAccount();
+                if (getUserModel() == null) {
+                    createAccount();
+
+                } else {
+
+                    reAuth();
+                }
             }
         });
 
@@ -161,11 +197,69 @@ public class SignUpActivity extends ActivityBase {
 
     private void signUp(String user_id, String imageUrl, ProgressDialog dialog) {
 
-        UserModel userModel = new UserModel(user_id, model.getFirstName(), model.getLastName(), model.getPhoneCode(), model.getPhone(), model.getEmail(), model.getPassword(), model.getUserType(),model.getFilter_attr());
+        UserModel userModel = new UserModel(user_id, model.getFirstName(), model.getLastName(), model.getPhoneCode(), model.getPhone(), model.getEmail(), model.getPassword(), model.getUserType(), model.getFilter_attr());
         userModel.setImage_url(imageUrl);
         dRef = FirebaseDatabase.getInstance().getReference();
         dRef.child(Tags.table_users)
                 .child(user_id)
+                .setValue(userModel)
+                .addOnSuccessListener(unused -> {
+                    dialog.dismiss();
+                    setUserModel(userModel);
+                    setResult(RESULT_OK);
+                    finish();
+                }).addOnFailureListener(e -> {
+            dialog.dismiss();
+            Common.createAlertDialog(this, e.getMessage());
+        });
+    }
+
+    private void reAuth() {
+        ProgressDialog dialog = Common.createProgressDialog(this, getString(R.string.wait));
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            AuthCredential credential = EmailAuthProvider.getCredential(getUserModel().getEmail(), getUserModel().getPassword());
+            currentUser.reauthenticate(credential).addOnSuccessListener(unused -> {
+
+
+                currentUser.updateEmail(model.getEmail())
+                        .addOnSuccessListener(unused1 -> {
+                            currentUser.updatePassword(model.getPassword())
+                                    .addOnSuccessListener(unused2 -> {
+                                        updateProfile(dialog);
+                                    }).addOnFailureListener(e -> {
+                                dialog.dismiss();
+                                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                            });
+                        }).addOnFailureListener(e -> {
+                    dialog.dismiss();
+                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                });
+
+            }).addOnFailureListener(e -> {
+                dialog.dismiss();
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            });
+        } else {
+            Toast.makeText(this, "Session expired login again", Toast.LENGTH_SHORT).show();
+
+        }
+
+    }
+
+    private void updateProfile(ProgressDialog dialog) {
+        UserModel userModel = new UserModel(getUserModel().getUser_id(), model.getFirstName(), model.getLastName(), model.getPhoneCode(), model.getPhone(), model.getEmail(), model.getPassword(), model.getUserType(), model.getFilter_attr());
+        userModel.setRate(getUserModel().getRate());
+        dRef = FirebaseDatabase.getInstance().getReference();
+        dRef.child(Tags.table_users)
+                .child(getUserModel().getUser_id())
                 .setValue(userModel)
                 .addOnSuccessListener(unused -> {
                     dialog.dismiss();

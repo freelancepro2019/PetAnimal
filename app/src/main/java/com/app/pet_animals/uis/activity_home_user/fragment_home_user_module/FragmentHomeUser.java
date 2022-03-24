@@ -1,6 +1,7 @@
 package com.app.pet_animals.uis.activity_home_user.fragment_home_user_module;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,7 @@ import com.app.pet_animals.databinding.FilterDialogBinding;
 import com.app.pet_animals.databinding.FragmentHomeUserBinding;
 import com.app.pet_animals.models.UserModel;
 import com.app.pet_animals.tags.Tags;
+import com.app.pet_animals.uis.activity_add_post.ActivityAddPost;
 import com.app.pet_animals.uis.activity_base.FragmentBase;
 import com.app.pet_animals.uis.activity_home_user.HomeActivityUser;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -66,7 +68,7 @@ public class FragmentHomeUser extends FragmentBase {
         binding.recViewLayout.tvNoData.setText(R.string.no_data);
         dRef = FirebaseDatabase.getInstance().getReference();
         binding.recViewLayout.recView.setLayoutManager(new LinearLayoutManager(activity));
-        adapter = new ServiceAdapter(activity,getLang());
+        adapter = new ServiceAdapter(activity,getLang(),this);
         binding.recViewLayout.recView.setAdapter(adapter);
         binding.recViewLayout.swipeRefresh.setColorSchemeResources(R.color.colorPrimary);
         binding.recViewLayout.swipeRefresh.setOnRefreshListener(this::filter);
@@ -213,5 +215,13 @@ public class FragmentHomeUser extends FragmentBase {
 
         dialog.setContentView(filterDialogBinding.getRoot());
         dialog.show();
+    }
+
+    public void navigateToSendPosActivity(UserModel model) {
+        Intent intent = new Intent(activity, ActivityAddPost.class);
+        intent.putExtra("id",model.getUser_id());
+        intent.putExtra("name",model.getFirst_name()+" "+model.getLast_name());
+        intent.putExtra("phone",model.getPhone_code()+model.getPhone());
+        startActivity(intent);
     }
 }

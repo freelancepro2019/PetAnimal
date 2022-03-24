@@ -88,6 +88,10 @@ public class FragmentNavigationBaseUser extends FragmentBase {
                     tvTitle.setText(R.string.orders);
                 }else if (id==R.id.fragmentFavoriteUser){
                     tvTitle.setText(R.string.housing_owner_favorite);
+                }else if (id==R.id.fragmentUserSearch){
+                    tvTitle.setText(R.string.search);
+                }else if (id==R.id.fragmentHomeUser){
+                    tvTitle.setText(R.string.home);
                 }
             });
         }

@@ -6,11 +6,14 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.pet_animals.R;
 import com.app.pet_animals.databinding.ServiceRowBinding;
 import com.app.pet_animals.models.UserModel;
+import com.app.pet_animals.uis.activity_home_user.fragment_home_user_module.FragmentHomeUser;
+import com.app.pet_animals.uis.activity_home_user.fragment_home_user_module.FragmentUserSearch;
 
 import java.util.List;
 
@@ -19,10 +22,12 @@ public class ServiceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private Context context;
     private LayoutInflater inflater;
     private String lang;
-    public ServiceAdapter(Context context, String lang) {
+    private Fragment fragment;
+    public ServiceAdapter(Context context, String lang,Fragment fragment) {
         this.context = context;
         inflater = LayoutInflater.from(context);
         this.lang = lang;
+        this.fragment = fragment;
     }
 
 
@@ -41,6 +46,15 @@ public class ServiceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         myHolder.binding.setModel(list.get(position));
         myHolder.binding.setLang(lang);
 
+        myHolder.itemView.setOnClickListener(view -> {
+            if (fragment instanceof FragmentHomeUser){
+                FragmentHomeUser fragmentHomeUser = (FragmentHomeUser) fragment;
+                fragmentHomeUser.navigateToSendPosActivity(list.get(myHolder.getAdapterPosition()));
+            }else if (fragment instanceof FragmentUserSearch){
+                FragmentUserSearch fragmentUserSearch = (FragmentUserSearch) fragment;
+                fragmentUserSearch.navigateToSendPosActivity(list.get(myHolder.getAdapterPosition()));
+            }
+        });
 
     }
 

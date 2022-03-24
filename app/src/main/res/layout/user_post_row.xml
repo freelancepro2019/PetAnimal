@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.app.pet_animals.models.PostModel" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="3dp"
+            app:cardElevation="3dp"
+            app:contentPadding="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="36dp"
+                        android:layout_height="36dp">
+
+                        <ImageView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:src="@drawable/avatar" />
+
+                        <com.github.ybq.android.spinkit.SpinKitView
+                            android:id="@+id/loadView"
+                            style="@style/SpinKitView.Small.DoubleBounce"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:visibility='@{model.post_status.equals("accepted")?View.VISIBLE:View.GONE,default=gone}'
+                            app:SpinKit_Color="@color/colorPrimary"
+                            app:SpinKit_Style="DoubleBounce" />
+                    </FrameLayout>
+
+                    <androidx.legacy.widget.Space
+                        android:layout_width="16dp"
+                        android:layout_height="0dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{model.service_name}"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+
+                        />
+
+                    <androidx.legacy.widget.Space
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <ImageView
+                        android:id="@+id/call"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:padding="3dp"
+                        android:src="@drawable/ic_call2"
+                        app:tint="@color/colorPrimary" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/gray2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:text="@{model.post_details}"
+                    android:textColor="@color/gray4"
+                    android:textSize="13sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:visibility='@{model.post_status.equals("accepted")?View.VISIBLE:View.GONE}'>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:padding="3dp"
+                        android:src="@drawable/ic_calender"
+                        app:tint="@color/colorPrimary"
+
+                        />
+
+                    <androidx.legacy.widget.Space
+                        android:layout_width="8dp"
+                        android:layout_height="0dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text='@{model.post_available_date+" "+model.post_available_time}'
+                        android:textColor="@color/gray4"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="12dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        order_status="@{model.post_status}"
+                        order_status_color_text="@{model.post_status}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp" />
+
+                    <androidx.legacy.widget.Space
+                        android:layout_width="12dp"
+                        android:layout_height="0dp" />
+
+                    <androidx.cardview.widget.CardView
+                        order_status_color="@{model.post_status}"
+                        android:layout_width="0dp"
+                        android:layout_height="8dp"
+                        android:layout_margin="3dp"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="6dp"
+                        app:cardElevation="1dp" />
+
+                    <Button
+                        android:id="@+id/addRate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_margin="5dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/rounded_rate"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:text="@string/add_rate"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:visibility='@{model.post_status.equals("completed")?View.VISIBLE:View.GONE,default=gone}' />
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_margin="8dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="3dp"
+            app:layout_constraintBottom_toBottomOf="@id/cardData"
+            app:layout_constraintEnd_toEndOf="@id/cardData"
+            app:layout_constraintStart_toStartOf="@id/cardData"
+            app:layout_constraintTop_toBottomOf="@id/cardData">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ellipsize="end"
+                android:lines="1"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="@{model.date}"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp" />
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

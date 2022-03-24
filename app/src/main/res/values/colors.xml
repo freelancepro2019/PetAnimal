@@ -18,6 +18,9 @@
     <color name="transparent">#00000000</color>
     <color name="rate">#FFC107</color>
     <color name="red">#D70303</color>
+    <color name="green">#039803</color>
+
+    <color name="disabled">#20dfa14c</color>
 
 
 
