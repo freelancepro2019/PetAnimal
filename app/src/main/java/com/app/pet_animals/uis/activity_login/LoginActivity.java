@@ -17,6 +17,7 @@ import com.app.pet_animals.models.UserModel;
 import com.app.pet_animals.tags.Common;
 import com.app.pet_animals.tags.Tags;
 import com.app.pet_animals.uis.activity_base.ActivityBase;
+import com.app.pet_animals.uis.activity_home_service.HomeActivityService;
 import com.app.pet_animals.uis.activity_home_user.HomeActivityUser;
 import com.app.pet_animals.uis.activity_sign_up.SignUpActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -129,13 +130,11 @@ public class LoginActivity extends ActivityBase {
         Intent intent = null;
         if (user_type.equals(Tags.user_animal_owner)) {
             intent = new Intent(this, HomeActivityUser.class);
-            startActivity(intent);
-            finish();
-        } else if (user_type.equals(Tags.user_doctor)) {
-
-        } else {
-
+        }  else {
+            intent = new Intent(this, HomeActivityService.class);
         }
+        startActivity(intent);
+        finish();
 
     }
 

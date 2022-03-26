@@ -5,25 +5,28 @@
     <data>
 
         <variable
-            name="model"
-            type="com.app.pet_animals.models.UserModel" />
-        <variable
             name="lang"
             type="String" />
+
+
         <variable
-            name="orderCount"
+            name="rate"
             type="String" />
 
-        <import type="android.view.View"/>
+        <variable
+            name="model"
+            type="com.app.pet_animals.models.UserModel" />
+
+
+        <import type="android.view.View" />
     </data>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
-        >
-        <androidx.constraintlayout.widget.ConstraintLayout
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".uis.activity_home.fragments.profile_module.FragmentProfile">
@@ -49,11 +52,10 @@
                 app:layout_constraintVertical_bias=".3">
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    userImage="@{model.image_url}"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:src="@drawable/avatar"
-                    userImage="@{model.image_url}"
-                    />
+                    android:src="@drawable/avatar" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -68,6 +70,35 @@
                     android:textStyle="bold"
 
                     />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp"
+                    >
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_star"
+                        android:padding="3dp"
+                        app:tint="@color/white"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:text='@{"("+rate+")"}'
+                        />
+
+
+                </LinearLayout>
+
             </LinearLayout>
 
             <androidx.cardview.widget.CardView
@@ -144,15 +175,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
+                            android:gravity="start"
                             android:lines="1"
                             android:text='@{model.phone_code+model.phone}'
-                            android:textColor="@color/black"
-                            android:textSize="14sp"
-                            android:gravity="start"
                             android:textAlignment="viewStart"
-                            />
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
                     </LinearLayout>
-
 
 
                 </LinearLayout>
@@ -202,7 +231,7 @@
                         android:orientation="vertical">
 
                         <LinearLayout
-                            android:id="@+id/llEditProfile"
+                            android:id="@+id/llUpdateProfile"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
@@ -238,10 +267,10 @@
                             android:layout_marginBottom="5dp"
                             android:background="@drawable/line_horz" />
 
+
                         <LinearLayout
-                            android:id="@+id/llPosts"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="40dp"
                             android:gravity="center_vertical"
                             android:orientation="horizontal">
 
@@ -252,160 +281,59 @@
                                 android:gravity="center_vertical"
                                 android:paddingStart="16dp"
                                 android:paddingEnd="16dp"
-                                android:text="@string/orders"
+                                android:text="@string/receive_orders"
                                 android:textColor="@color/gray4"
                                 android:textSize="15sp"
 
-
                                 />
 
-                            <FrameLayout
+                            <Switch
+                                android:id="@+id/switchBtn"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="8dp"
-                                android:layout_marginEnd="8dp"
-                                android:background="@drawable/rounded_primary"
-                                android:paddingStart="8dp"
-                                android:paddingEnd="8dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:text='@{orderCount,default="0"}'
-                                    android:textColor="@color/white"
-                                    android:textSize="11sp" />
-                            </FrameLayout>
-
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_marginStart="8dp"
-                                android:layout_marginEnd="8dp"
-                                android:rotation='@{lang.equals("ar")?0:180}'
-                                android:src="@drawable/ic_arrow_left"
-                                app:tint="@color/gray4" />
+                                android:checked="@{model.canReceiveOrders,default=true}"
+                                tools:ignore="UseSwitchCompatOrMaterialXml" />
                         </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="4dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:background="@drawable/line_horz" />
-
-                        <LinearLayout
-                            android:id="@+id/llFavorite"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="40dp"
-                                android:layout_weight="1"
-                                android:gravity="center_vertical"
-                                android:paddingStart="16dp"
-                                android:paddingEnd="16dp"
-                                android:textColor="@color/gray4"
-                                android:textSize="15sp"
-                                android:text="@string/housing_owner_favorite"
-
-                                />
-
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_marginStart="8dp"
-                                android:layout_marginEnd="8dp"
-                                android:rotation='@{lang.equals("ar")?0:180}'
-                                android:src="@drawable/ic_arrow_left"
-                                app:tint="@color/gray4" />
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="4dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:background="@drawable/line_horz" />
-
-                        <LinearLayout
-                            android:id="@+id/llAnimals"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="40dp"
-                                android:layout_weight="1"
-                                android:gravity="center_vertical"
-                                android:paddingStart="16dp"
-                                android:paddingEnd="16dp"
-                                android:textColor="@color/gray4"
-                                android:textSize="15sp"
-                                android:text="@string/my_pet_animals"
-
-                                />
-
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_marginStart="8dp"
-                                android:layout_marginEnd="8dp"
-                                android:rotation='@{lang.equals("ar")?0:180}'
-                                android:src="@drawable/ic_arrow_left"
-                                app:tint="@color/gray4" />
-                        </LinearLayout>
-
-
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
-
-
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardLogout"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
-                    app:cardElevation="4dp"
-                    app:cardCornerRadius="20dp"
-                    app:cardBackgroundColor="@color/white"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="16dp"
                     android:layout_marginStart="5dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="5dp"
                     android:layout_marginBottom="5dp"
-                    >
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="4dp">
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:paddingStart="16dp"
-                        android:paddingEnd="16dp"
-                        >
+                        android:paddingEnd="16dp">
+
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:src="@drawable/ic_logout"
-                            app:tint="@color/colorPrimary"
-                            />
+                            app:tint="@color/colorPrimary" />
+
                         <androidx.legacy.widget.Space
                             android:layout_width="8dp"
-                            android:layout_height="0dp"
-                            />
+                            android:layout_height="0dp" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="16sp"
-                            android:textColor="@color/colorPrimary"
                             android:text="@string/logout"
-                            />
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="16sp" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -414,5 +342,4 @@
 
     </androidx.core.widget.NestedScrollView>
 </layout>
-
 

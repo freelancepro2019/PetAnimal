@@ -107,7 +107,12 @@ public class SignUpModel extends BaseObservable implements Serializable {
     }
 
     public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
+        if (imagePath==null){
+            this.imagePath ="";
+        }else {
+            this.imagePath = imagePath;
+
+        }
     }
 
     @Bindable

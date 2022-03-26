@@ -15,6 +15,8 @@ public class UserModel implements Serializable {
     private String user_type;
     private int rate;
     private String filter_attr;
+    private boolean canReceiveOrders;
+
 
     public UserModel() {
     }
@@ -31,6 +33,8 @@ public class UserModel implements Serializable {
         this.filter_attr = filter_attr;
         this.rate = 0;
         this.full_name = first_name+" "+last_name;
+        this.canReceiveOrders = true;
+
     }
 
     public String getUser_id() {
@@ -42,7 +46,13 @@ public class UserModel implements Serializable {
     }
 
     public void setImage_url(String image_url) {
-        this.image_url = image_url;
+        if (this.image_url==null){
+            this.image_url = "";
+
+        }else {
+            this.image_url = image_url;
+
+        }
     }
 
     public void setUser_id(String user_id) {
@@ -127,5 +137,13 @@ public class UserModel implements Serializable {
 
     public void setFull_name(String full_name) {
         this.full_name = full_name;
+    }
+
+    public boolean isCanReceiveOrders() {
+        return canReceiveOrders;
+    }
+
+    public void setCanReceiveOrders(boolean canReceiveOrders) {
+        this.canReceiveOrders = canReceiveOrders;
     }
 }

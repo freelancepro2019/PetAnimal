@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
@@ -40,6 +41,7 @@ public class ActivityAddPost extends ActivityBase {
     private String service_phone;
     private DatabaseReference dRef;
     private AnimalSpinnerAdapter adapter;
+    private boolean canReceiveOrders = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +87,41 @@ public class ActivityAddPost extends ActivityBase {
         binding.btnBook.setOnClickListener(view -> {
             sendOrder();
         });
+
         getMyAnimals();
+    }
+
+    private void getServiceData() {
+        dRef = FirebaseDatabase.getInstance().getReference();
+        Query query = dRef.child(Tags.table_users)
+                .orderByChild("user_id")
+                .equalTo(service_id);
+
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.getValue() != null) {
+                    UserModel userModel = snapshot.child(service_id).getValue(UserModel.class);
+                    if (userModel != null) {
+                        canReceiveOrders = userModel.isCanReceiveOrders();
+                    } else {
+                        canReceiveOrders = false;
+                        Common.createAlertDialog(ActivityAddPost.this, getString(R.string.error_msg));
+                    }
+                } else {
+                    canReceiveOrders = false;
+                    Toast.makeText(ActivityAddPost.this, R.string.user_not_found, Toast.LENGTH_SHORT).show();
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("error_login", error.getMessage());
+
+            }
+        });
+
     }
 
     private void getMyAnimals() {
@@ -121,32 +157,38 @@ public class ActivityAddPost extends ActivityBase {
 
 
     private void sendOrder() {
-        ProgressDialog dialog = Common.createProgressDialog(this, getString(R.string.wait));
-        dialog.setCancelable(false);
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.show();
+        if (canReceiveOrders){
+            ProgressDialog dialog = Common.createProgressDialog(this, getString(R.string.wait));
+            dialog.setCancelable(false);
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.show();
 
-        dRef = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference mRef = dRef.child(Tags.table_posts);
-        String post_id = mRef.push().getKey();
-        postModel.setPost_id(post_id);
-        postModel.setPost_status(Tags.status_new);
-        postModel.setService_id(service_id);
-        postModel.setService_name(service_name);
-        postModel.setService_phone(service_phone);
-        postModel.setUser_id(getUserModel().getUser_id());
-        postModel.setUser_name(getUserModel().getFirst_name() + " " + getUserModel().getLast_name());
-        postModel.setUser_phone(getUserModel().getPhone_code() + getUserModel().getPhone());
-        postModel.setDate(getNowDate());
-        mRef.child(post_id).setValue(postModel)
-                .addOnSuccessListener(unused -> {
-                    dialog.dismiss();
-                    Toast.makeText(this, R.string.suc, Toast.LENGTH_SHORT).show();
-                    finish();
-                }).addOnFailureListener(e -> {
-            dialog.dismiss();
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
-        });
+            dRef = FirebaseDatabase.getInstance().getReference();
+            DatabaseReference mRef = dRef.child(Tags.table_posts);
+            String post_id = mRef.push().getKey();
+            postModel.setPost_id(post_id);
+            postModel.setPost_status(Tags.status_new);
+            postModel.setService_id(service_id);
+            postModel.setService_name(service_name);
+            postModel.setService_phone(service_phone);
+            postModel.setUser_id(getUserModel().getUser_id());
+            postModel.setUser_name(getUserModel().getFirst_name() + " " + getUserModel().getLast_name());
+            postModel.setUser_phone(getUserModel().getPhone_code() + getUserModel().getPhone());
+            postModel.setDate(getNowDate());
+            mRef.child(post_id).setValue(postModel)
+                    .addOnSuccessListener(unused -> {
+                        dialog.dismiss();
+                        Toast.makeText(this, R.string.suc, Toast.LENGTH_SHORT).show();
+                        finish();
+                    }).addOnFailureListener(e -> {
+                dialog.dismiss();
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            });
+        }else {
+            String msg = service_name + " " + getString(R.string.cnt_receive_order);
+            Common.createAlertDialog(this, msg);
+        }
+
 
     }
 

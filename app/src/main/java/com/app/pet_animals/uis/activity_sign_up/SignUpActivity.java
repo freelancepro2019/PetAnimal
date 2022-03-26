@@ -257,6 +257,7 @@ public class SignUpActivity extends ActivityBase {
     private void updateProfile(ProgressDialog dialog) {
         UserModel userModel = new UserModel(getUserModel().getUser_id(), model.getFirstName(), model.getLastName(), model.getPhoneCode(), model.getPhone(), model.getEmail(), model.getPassword(), model.getUserType(), model.getFilter_attr());
         userModel.setRate(getUserModel().getRate());
+        userModel.setImage_url(getUserModel().getImage_url());
         dRef = FirebaseDatabase.getInstance().getReference();
         dRef.child(Tags.table_users)
                 .child(getUserModel().getUser_id())

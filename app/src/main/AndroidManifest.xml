@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MedicineAlert">
         <activity
+            android:name=".uis.activity_home_service.HomeActivityService"
+            android:exported="true" />
+        <activity
             android:name=".uis.activity_add_post.ActivityAddPost"
             android:exported="true" />
         <activity

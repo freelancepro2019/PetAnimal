@@ -8,7 +8,9 @@ import android.os.Bundle;
 
 import com.app.pet_animals.R;
 import com.app.pet_animals.databinding.ActivitySplashBinding;
+import com.app.pet_animals.tags.Tags;
 import com.app.pet_animals.uis.activity_base.ActivityBase;
+import com.app.pet_animals.uis.activity_home_service.HomeActivityService;
 import com.app.pet_animals.uis.activity_home_user.HomeActivityUser;
 import com.app.pet_animals.uis.activity_login.LoginActivity;
 
@@ -24,10 +26,11 @@ import io.reactivex.schedulers.Schedulers;
 public class SplashActivity extends ActivityBase {
     private ActivitySplashBinding binding;
     private CompositeDisposable disposable = new CompositeDisposable();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_splash);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_splash);
         initView();
     }
 
@@ -43,11 +46,11 @@ public class SplashActivity extends ActivityBase {
 
                     @Override
                     public void onNext(@NonNull Long aLong) {
-                       if (getUserModel()==null){
-                           navigateToLoginActivity();
-                       }else {
-                           navigateToHomeActivity();
-                       }
+                        if (getUserModel() == null) {
+                            navigateToLoginActivity();
+                        } else {
+                            navigateToHomeActivity();
+                        }
                     }
 
                     @Override
@@ -63,7 +66,13 @@ public class SplashActivity extends ActivityBase {
     }
 
     private void navigateToHomeActivity() {
-        Intent intent = new Intent(this, HomeActivityUser.class);
+        String user_type = getUserModel().getUser_type();
+        Intent intent = null;
+        if (user_type.equals(Tags.user_animal_owner)) {
+            intent = new Intent(this, HomeActivityUser.class);
+        } else {
+            intent = new Intent(this, HomeActivityService.class);
+        }
         startActivity(intent);
         finish();
     }

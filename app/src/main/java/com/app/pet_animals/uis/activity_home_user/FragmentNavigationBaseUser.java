@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -26,12 +27,12 @@ public class FragmentNavigationBaseUser extends FragmentBase {
     private int navHostId = -1;
     private NavController navController;
     private View root;
-    private HomeActivityUser activity;
+    private AppCompatActivity activity;
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        activity = (HomeActivityUser) context;
+        activity = (AppCompatActivity) context;
     }
 
     public static FragmentNavigationBaseUser newInstance(int layoutRecourseId, int navHostId) {
@@ -92,6 +93,10 @@ public class FragmentNavigationBaseUser extends FragmentBase {
                     tvTitle.setText(R.string.search);
                 }else if (id==R.id.fragmentHomeUser){
                     tvTitle.setText(R.string.home);
+                }else if (id==R.id.fragmentHomeService){
+                    tvTitle.setText(R.string.home);
+                }else if (id==R.id.fragmentProfileService){
+                    tvTitle.setText(R.string.profile);
                 }
             });
         }

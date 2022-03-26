@@ -71,4 +71,12 @@
     <string name="unfav">إلغاء المفضلة</string>
     <string name="already_fav">تم الإضافة الى المفضلة من قبل</string>
     <string name="no_fav">لا توجد مفضلة</string>
+    <string name="receive_orders">إستقبال طلبات جديدة</string>
+    <string name="new_orders">الطلبات الجديدة</string>
+    <string name="cnt_receive_order">لا يمكنة استقبال الطلبات الان.</string>
+    <string name="end">إنهاء</string>
+    <string name="av_date">الموعد المتاح</string>
+    <string name="av_time">الوقت المتاح</string>
+    <string name="date_time_booking">تاريخ/موعد الحجز</string>
+
 </resources>

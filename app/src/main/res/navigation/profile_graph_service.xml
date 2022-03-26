@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profile_navigation"
+    app:startDestination="@id/fragmentProfileService">
+
+    <fragment
+        android:id="@+id/fragmentProfileService"
+        android:name="com.app.pet_animals.uis.activity_home_service.fragment_profile_service_module.FragmentProfileService"
+        android:label=""
+        tools:layout="@layout/fragment_profile_service"
+
+        />
+
+
+
+</navigation>

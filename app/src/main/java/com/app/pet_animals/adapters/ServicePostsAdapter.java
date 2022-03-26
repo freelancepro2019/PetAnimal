@@ -10,19 +10,21 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.pet_animals.R;
+import com.app.pet_animals.databinding.ServicePostRowBinding;
 import com.app.pet_animals.databinding.UserPostRowBinding;
 import com.app.pet_animals.models.PostModel;
+import com.app.pet_animals.uis.activity_home_service.fragment_home_service_module.FragmentOrdersService;
 import com.app.pet_animals.uis.activity_home_user.fragment_profile_user_module.FragmentOrdersUser;
 
 import java.util.List;
 
-public class UserPostsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class ServicePostsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<PostModel> list;
     private Context context;
     private LayoutInflater inflater;
     private Fragment fragment;
 
-    public UserPostsAdapter(Context context, Fragment fragment) {
+    public ServicePostsAdapter(Context context, Fragment fragment) {
         this.context = context;
         inflater = LayoutInflater.from(context);
         this.fragment = fragment;
@@ -33,7 +35,7 @@ public class UserPostsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        UserPostRowBinding binding = DataBindingUtil.inflate(inflater, R.layout.user_post_row, parent, false);
+        ServicePostRowBinding binding = DataBindingUtil.inflate(inflater, R.layout.service_post_row, parent, false);
         return new MyHolder(binding);
 
     }
@@ -42,18 +44,33 @@ public class UserPostsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, int position) {
         MyHolder myHolder = (MyHolder) holder;
         myHolder.binding.setModel(list.get(position));
-        myHolder.binding.addRate.setOnClickListener(view -> {
-            if (fragment instanceof FragmentOrdersUser) {
-                FragmentOrdersUser fragmentOrdersUser = (FragmentOrdersUser) fragment;
-                fragmentOrdersUser.createRateSheetDialog(list.get(myHolder.getAdapterPosition()), myHolder.getAdapterPosition());
+        myHolder.binding.btnAction.setOnClickListener(view -> {
+            if (fragment instanceof FragmentOrdersService) {
+                FragmentOrdersService fragmentOrdersService = (FragmentOrdersService) fragment;
+                fragmentOrdersService.createAppointmentCalender(list.get(myHolder.getAdapterPosition()));
             }
         });
 
+        myHolder.binding.btnRefuse.setOnClickListener(view -> {
+            if (fragment instanceof FragmentOrdersService) {
+                FragmentOrdersService fragmentOrdersService = (FragmentOrdersService) fragment;
+                fragmentOrdersService.refuseOrder(list.get(myHolder.getAdapterPosition()), myHolder.getAdapterPosition());
+            }
+        });
+
+        myHolder.binding.btnEnd.setOnClickListener(view -> {
+            if (fragment instanceof FragmentOrdersService) {
+                FragmentOrdersService fragmentOrdersService = (FragmentOrdersService) fragment;
+                fragmentOrdersService.endOrder(list.get(myHolder.getAdapterPosition()), myHolder.getAdapterPosition());
+            }
+        });
+
+
         myHolder.binding.call.setOnClickListener(view -> {
-            if (fragment instanceof FragmentOrdersUser) {
-                FragmentOrdersUser fragmentOrdersUser = (FragmentOrdersUser) fragment;
-                String phone = list.get(myHolder.getAdapterPosition()).getService_phone();
-                fragmentOrdersUser.call(phone);
+            if (fragment instanceof FragmentOrdersService) {
+                FragmentOrdersService fragmentOrdersService = (FragmentOrdersService) fragment;
+                String phone = list.get(myHolder.getAdapterPosition()).getUser_phone();
+                fragmentOrdersService.call(phone);
             }
         });
 
@@ -65,9 +82,9 @@ public class UserPostsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     public static class MyHolder extends RecyclerView.ViewHolder {
-        private UserPostRowBinding binding;
+        private ServicePostRowBinding binding;
 
-        public MyHolder(UserPostRowBinding binding) {
+        public MyHolder(ServicePostRowBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
 
