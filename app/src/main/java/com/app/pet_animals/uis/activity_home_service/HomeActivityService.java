@@ -2,6 +2,7 @@ package com.app.pet_animals.uis.activity_home_service;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import com.app.pet_animals.R;
 import com.app.pet_animals.adapters.MyPagerAdapter;
 import com.app.pet_animals.databinding.ActivityHomeServiceBinding;
 import com.app.pet_animals.databinding.ActivityHomeUserBinding;
+import com.app.pet_animals.language.Language;
 import com.app.pet_animals.uis.activity_base.ActivityBase;
 import com.app.pet_animals.uis.activity_home_user.FragmentNavigationBaseUser;
 import com.app.pet_animals.uis.activity_login.LoginActivity;
@@ -24,6 +26,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import io.paperdb.Paper;
 
 public class HomeActivityService extends ActivityBase implements ViewPager.OnPageChangeListener, NavigationBarView.OnItemSelectedListener {
     private ActivityHomeServiceBinding binding;
@@ -110,6 +114,19 @@ public class HomeActivityService extends ActivityBase implements ViewPager.OnPag
         return 0;
     }
 
+    public void refreshActivity(String lang) {
+        Paper.book().write("lang", lang);
+        Language.setNewLocale(this, lang);
+        new Handler()
+                .postDelayed(() -> {
+
+                    Intent intent = getIntent();
+                    finish();
+                    startActivity(intent);
+                }, 500);
+
+
+    }
     @Override
     public void onBackPressed() {
         FragmentNavigationBaseUser fragmentNavigationBase = (FragmentNavigationBaseUser) fragments.get(binding.pager.getCurrentItem());

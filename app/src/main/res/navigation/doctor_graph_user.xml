@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_navigation"
+    app:startDestination="@id/fragmentDoctorUser"
+    >
+
+    <fragment
+        android:id="@+id/fragmentDoctorUser"
+        android:name="com.app.pet_animals.uis.activity_home_user.fragment_home_user_module.FragmentDoctorsUser"
+        tools:layout="@layout/fragment_home_user"
+        android:label=""
+
+        />
+    <fragment
+        android:id="@+id/fragmentUserSearch"
+        android:name="com.app.pet_animals.uis.activity_home_user.fragment_home_user_module.FragmentUserSearch"
+        tools:layout="@layout/fragment_user_search"
+        android:label=""
+
+        />
+
+</navigation>

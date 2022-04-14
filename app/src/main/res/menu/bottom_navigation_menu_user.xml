@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/home"
-        android:title="@string/home"
+        android:title="@string/housing_owner"
         android:icon="@drawable/icon_home_selection"
+
+        />
+    <item android:id="@+id/doctor"
+        android:title="@string/pet_doctors"
+        android:icon="@drawable/icon_doctor_selection"
 
         />
     <item android:id="@+id/profile"

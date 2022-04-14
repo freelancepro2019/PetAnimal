@@ -294,6 +294,45 @@
                                 android:checked="@{model.canReceiveOrders,default=true}"
                                 tools:ignore="UseSwitchCompatOrMaterialXml" />
                         </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="4dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="@drawable/line_horz" />
+
+                        <LinearLayout
+                            android:id="@+id/llLanguage"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:paddingStart="16dp"
+                                android:paddingEnd="16dp"
+                                android:text="@string/change_language"
+                                android:textColor="@color/gray4"
+                                android:textSize="15sp"
+
+                                />
+
+                            <TextView
+                                android:id="@+id/tvLanguage"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="14sp"
+                                android:text='@{lang.equals("ar")?"EN":"العربية"}'
+                                />
+                        </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 

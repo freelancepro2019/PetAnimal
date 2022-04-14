@@ -85,6 +85,16 @@ public class FragmentProfileService extends FragmentBase {
             Intent intent = new Intent(activity, SignUpActivity.class);
             launcher.launch(intent);
         });
+        binding.tvLanguage.setOnClickListener(view -> {
+            String lang = getLang();
+            if (lang.equals("ar")){
+                lang = "en";
+            }else {
+                lang = "ar";
+            }
+            activity.refreshActivity(lang);
+        });
+
 
         getRate();
 

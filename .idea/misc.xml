@@ -32,17 +32,21 @@
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/drawable/ic_call2.xml" value="0.24114583333333334" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/drawable/ic_empty_heart.xml" value="0.24114583333333334" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/drawable/ic_empty_home.xml" value="0.24114583333333334" />
+        <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/drawable/ic_pet_doctor.xml" value="0.24114583333333334" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/drawable/ic_star.xml" value="0.24114583333333334" />
+        <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/drawable/icon_doctor_selection.xml" value="0.24114583333333334" />
+        <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/drawable/icon_home_selection.xml" value="0.24114583333333334" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/drawable/icon_profile_selection.xml" value="0.24114583333333334" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/drawable/rounded_primary_btn_enabled.xml" value="0.24114583333333334" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/drawable/rounded_rate.xml" value="0.24114583333333334" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/drawable/rounded_white.xml" value="0.24114583333333334" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/drawable/rounded_white_top.xml" value="0.24114583333333334" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/activity_add_post.xml" value="0.2" />
+        <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/activity_forget_password.xml" value="0.22083333333333333" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/activity_home.xml" value="0.22083333333333333" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/activity_home_service.xml" value="0.21654749744637386" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/activity_home_user.xml" value="0.22083333333333333" />
-        <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/activity_login.xml" value="0.2" />
+        <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/activity_sign_up.xml" value="0.264" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/activity_splash.xml" value="0.152" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/animal_row.xml" value="0.152" />
@@ -50,6 +54,7 @@
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/favorite_row.xml" value="0.22083333333333333" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/filter_dialog.xml" value="0.22083333333333333" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/fragment_animal_user.xml" value="0.22083333333333333" />
+        <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/fragment_doctors_base_user.xml" value="0.22083333333333333" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/fragment_favourite_user.xml" value="0.22083333333333333" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/fragment_home.xml" value="0.22083333333333333" />
         <entry key="..\:/works/Courses/work_android/FreeLancer/PetAnimal/app/src/main/res/layout/fragment_home_base_service.xml" value="0.22083333333333333" />

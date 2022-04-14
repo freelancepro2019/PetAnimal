@@ -17,6 +17,7 @@ import com.app.pet_animals.models.UserModel;
 import com.app.pet_animals.tags.Common;
 import com.app.pet_animals.tags.Tags;
 import com.app.pet_animals.uis.activity_base.ActivityBase;
+import com.app.pet_animals.uis.activity_forget_password.ForgetPasswordActivity;
 import com.app.pet_animals.uis.activity_home_service.HomeActivityService;
 import com.app.pet_animals.uis.activity_home_user.HomeActivityUser;
 import com.app.pet_animals.uis.activity_sign_up.SignUpActivity;
@@ -62,6 +63,10 @@ public class LoginActivity extends ActivityBase {
         binding.llSignUp.setOnClickListener(view -> {
             navigateToSignUpActivity();
         });
+
+        binding.tvForgotPassword.setOnClickListener(view -> {
+            navigateToForgetPasswordActivity();
+        });
     }
 
 
@@ -74,7 +79,15 @@ public class LoginActivity extends ActivityBase {
         mAuth.signInWithEmailAndPassword(model.getEmail(), model.getPassword())
                 .addOnSuccessListener(authResult -> {
                     if (authResult != null && authResult.getUser() != null) {
-                        getUserById(authResult.getUser().getUid(), dialog);
+
+                        if (authResult.getUser().isEmailVerified()) {
+                            getUserById(authResult.getUser().getUid(), dialog);
+                        } else {
+                            dialog.dismiss();
+                            Toast.makeText(this, "UnVerified email check your email", Toast.LENGTH_LONG).show();
+                        }
+
+
                     } else {
                         dialog.dismiss();
                         Toast.makeText(this, R.string.user_not_found, Toast.LENGTH_SHORT).show();
@@ -130,7 +143,7 @@ public class LoginActivity extends ActivityBase {
         Intent intent = null;
         if (user_type.equals(Tags.user_animal_owner)) {
             intent = new Intent(this, HomeActivityUser.class);
-        }  else {
+        } else {
             intent = new Intent(this, HomeActivityService.class);
         }
         startActivity(intent);
@@ -142,5 +155,10 @@ public class LoginActivity extends ActivityBase {
         req = 1;
         Intent intent = new Intent(this, SignUpActivity.class);
         launcher.launch(intent);
+    }
+
+    private void navigateToForgetPasswordActivity() {
+        Intent intent = new Intent(this, ForgetPasswordActivity.class);
+        startActivity(intent);
     }
 }

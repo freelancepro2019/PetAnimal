@@ -11,11 +11,13 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
 
 import com.app.pet_animals.R;
 import com.app.pet_animals.adapters.MyPagerAdapter;
 import com.app.pet_animals.databinding.ActivityHomeUserBinding;
+import com.app.pet_animals.language.Language;
 import com.app.pet_animals.tags.Tags;
 import com.app.pet_animals.uis.activity_base.ActivityBase;
 import com.app.pet_animals.uis.activity_login.LoginActivity;
@@ -27,6 +29,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import io.paperdb.Paper;
 
 public class HomeActivityUser extends ActivityBase implements ViewPager.OnPageChangeListener, NavigationBarView.OnItemSelectedListener {
     private ActivityHomeUserBinding binding;
@@ -48,8 +52,11 @@ public class HomeActivityUser extends ActivityBase implements ViewPager.OnPageCh
 
 
         map.put(0, R.id.home);
-        map.put(1, R.id.profile);
+        map.put(1, R.id.doctor);
+        map.put(2, R.id.profile);
+
         fragments.add(FragmentNavigationBaseUser.newInstance(R.layout.fragment_home_base_user, R.id.navHomeHostFragmentUser));
+        fragments.add(FragmentNavigationBaseUser.newInstance(R.layout.fragment_doctors_base_user, R.id.navDoctorsHostFragmentUser));
         fragments.add(FragmentNavigationBaseUser.newInstance(R.layout.fragment_profile_base_user, R.id.navProfileHostFragmentUser));
 
 
@@ -111,6 +118,20 @@ public class HomeActivityUser extends ActivityBase implements ViewPager.OnPageCh
             }
         }
         return 0;
+    }
+
+    public void refreshActivity(String lang) {
+        Paper.book().write("lang", lang);
+        Language.setNewLocale(this, lang);
+        new Handler()
+                .postDelayed(() -> {
+
+                    Intent intent = getIntent();
+                    finish();
+                    startActivity(intent);
+                }, 500);
+
+
     }
 
     @Override

@@ -21,6 +21,8 @@ import com.app.pet_animals.models.UserModel;
 import com.app.pet_animals.tags.Common;
 import com.app.pet_animals.tags.Tags;
 import com.app.pet_animals.uis.activity_base.ActivityBase;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
@@ -204,14 +206,31 @@ public class SignUpActivity extends ActivityBase {
                 .child(user_id)
                 .setValue(userModel)
                 .addOnSuccessListener(unused -> {
-                    dialog.dismiss();
-                    setUserModel(userModel);
-                    setResult(RESULT_OK);
-                    finish();
+                    sendEmailVerification(dialog);
                 }).addOnFailureListener(e -> {
             dialog.dismiss();
             Common.createAlertDialog(this, e.getMessage());
         });
+    }
+
+    private void sendEmailVerification(ProgressDialog dialog) {
+        if (mAuth.getCurrentUser() != null) {
+            mAuth.getCurrentUser().sendEmailVerification()
+                    .addOnSuccessListener(unused -> {
+                        dialog.dismiss();
+                        finish();
+                        Toast.makeText(getApplicationContext(), "A verification link sent to your email", Toast.LENGTH_SHORT).show();
+                    }).addOnFailureListener(e -> {
+                dialog.dismiss();
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            });
+        } else {
+            dialog.dismiss();
+
+        }
+       /* setUserModel(model);
+        setResult(RESULT_OK);
+        finish();*/
     }
 
     private void reAuth() {

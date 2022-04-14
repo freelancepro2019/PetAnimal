@@ -3,19 +3,16 @@ package com.app.pet_animals.uis.activity_home_user.fragment_home_user_module;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.CompoundButton;
-import android.widget.Toast;
 
 import com.app.pet_animals.R;
 import com.app.pet_animals.adapters.ServiceAdapter;
@@ -38,12 +35,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class FragmentHomeUser extends FragmentBase {
+public class FragmentDoctorsUser extends FragmentBase {
     private HomeActivityUser activity;
     private FragmentHomeUserBinding binding;
     private ServiceAdapter adapter;
     private DatabaseReference dRef;
-    private String filterBy =Tags.user_housing_owner;
+    private String filterBy =Tags.user_doctor;
     private String dialogFilterQuery = filterBy;
     @Override
     public void onAttach(@NonNull Context context) {
@@ -79,8 +76,8 @@ public class FragmentHomeUser extends FragmentBase {
         binding.cardSearch.setOnClickListener(view -> {
             Navigation.findNavController(view).navigate(R.id.fragmentUserSearch);
         });
-        //getAllServiceProviders();
         filter();
+        //getAllServiceProviders();
     }
 
     private void getAllServiceProviders() {

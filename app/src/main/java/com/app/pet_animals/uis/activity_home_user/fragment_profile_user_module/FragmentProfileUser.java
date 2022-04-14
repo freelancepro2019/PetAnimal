@@ -89,6 +89,16 @@ public class FragmentProfileUser extends FragmentBase {
             launcher.launch(intent);
         });
 
+        binding.tvLanguage.setOnClickListener(view -> {
+            String lang = getLang();
+            if (lang.equals("ar")){
+                lang = "en";
+            }else {
+                lang = "ar";
+            }
+            activity.refreshActivity(lang);
+        });
+
         getPostsCount();
 
 
