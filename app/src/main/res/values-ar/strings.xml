@@ -83,5 +83,7 @@
     <string name="forgot_password">نسيت كلمة المرور ؟</string>
     <string name="reset_password">إعادة تعيين كلمة المرور</string>
     <string name="send">إرسال</string>
+    <string name="Health_Care">رعاية صحية</string>
+    <string name="home_care">رعاية منزلية</string>
 
 </resources>

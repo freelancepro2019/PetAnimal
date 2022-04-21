@@ -3,12 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_navigation"
-    app:startDestination="@id/fragmentHomeUser"
+    app:startDestination="@id/fragmentUserMain"
     >
+    <fragment
+        android:id="@+id/fragmentUserMain"
+        android:name="com.app.pet_animals.uis.activity_home_user.fragment_home_user_module.FragmentMainUser"
+        tools:layout="@layout/fragment_main_user"
+        android:label=""
 
+        />
     <fragment
         android:id="@+id/fragmentHomeUser"
         android:name="com.app.pet_animals.uis.activity_home_user.fragment_home_user_module.FragmentHomeUser"
+        tools:layout="@layout/fragment_home_user"
+        android:label=""
+
+        />
+    <fragment
+        android:id="@+id/fragmentDoctorUser"
+        android:name="com.app.pet_animals.uis.activity_home_user.fragment_home_user_module.FragmentDoctorsUser"
         tools:layout="@layout/fragment_home_user"
         android:label=""
 

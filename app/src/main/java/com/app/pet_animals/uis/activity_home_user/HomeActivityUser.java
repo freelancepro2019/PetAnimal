@@ -52,11 +52,11 @@ public class HomeActivityUser extends ActivityBase implements ViewPager.OnPageCh
 
 
         map.put(0, R.id.home);
-        map.put(1, R.id.doctor);
-        map.put(2, R.id.profile);
+      //  map.put(1, R.id.doctor);
+        map.put(1, R.id.profile);
 
-        fragments.add(FragmentNavigationBaseUser.newInstance(R.layout.fragment_home_base_user, R.id.navHomeHostFragmentUser));
-        fragments.add(FragmentNavigationBaseUser.newInstance(R.layout.fragment_doctors_base_user, R.id.navDoctorsHostFragmentUser));
+        fragments.add(FragmentNavigationBaseUser.newInstance(R.layout.fragment_main_base_user, R.id.navMainFragmentUser));
+      //  fragments.add(FragmentNavigationBaseUser.newInstance(R.layout.fragment_doctors_base_user, R.id.navDoctorsHostFragmentUser));
         fragments.add(FragmentNavigationBaseUser.newInstance(R.layout.fragment_profile_base_user, R.id.navProfileHostFragmentUser));
 
 

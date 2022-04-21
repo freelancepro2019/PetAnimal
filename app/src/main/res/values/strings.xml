@@ -83,5 +83,7 @@
     <string name="forgot_password">Forgot Password?</string>
     <string name="reset_password">Reset Password</string>
     <string name="send">Send</string>
+    <string name="Health_Care">Health Care</string>
+    <string name="home_care">Home Care</string>
 
 </resources>
