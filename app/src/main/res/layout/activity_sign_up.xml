@@ -73,7 +73,7 @@
                             android:layout_width="28dp"
                             android:layout_height="28dp"
                             android:layout_gravity="bottom"
-                            android:background="@drawable/circle_wihte"
+                            android:background="@drawable/circle_white"
                             android:src="@drawable/ic_camera"
                             android:padding="5dp"
                             app:tint="@color/colorPrimary"

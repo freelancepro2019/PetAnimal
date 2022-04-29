@@ -20,7 +20,6 @@
 
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="45dp"
-                android:background="@drawable/bg2"
                 app:cardElevation="2dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
@@ -61,7 +60,6 @@
                 android:id="@+id/cardHomeCare"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="45dp"
-                android:background="@drawable/bg2"
                 app:cardElevation="2dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"

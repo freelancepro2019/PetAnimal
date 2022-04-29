@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.app.pet_animals.R;
 import com.app.pet_animals.databinding.ServiceRowBinding;
 import com.app.pet_animals.models.UserModel;
+import com.app.pet_animals.uis.activity_home_user.fragment_home_user_module.FragmentDoctorsUser;
 import com.app.pet_animals.uis.activity_home_user.fragment_home_user_module.FragmentHomeUser;
 import com.app.pet_animals.uis.activity_home_user.fragment_home_user_module.FragmentUserSearch;
 
@@ -50,6 +51,9 @@ public class ServiceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             if (fragment instanceof FragmentHomeUser){
                 FragmentHomeUser fragmentHomeUser = (FragmentHomeUser) fragment;
                 fragmentHomeUser.navigateToSendPosActivity(list.get(myHolder.getAdapterPosition()));
+            }else  if (fragment instanceof FragmentDoctorsUser){
+                FragmentDoctorsUser fragmentDoctorsUser = (FragmentDoctorsUser) fragment;
+                fragmentDoctorsUser.navigateToSendPosActivity(list.get(myHolder.getAdapterPosition()));
             }else if (fragment instanceof FragmentUserSearch){
                 FragmentUserSearch fragmentUserSearch = (FragmentUserSearch) fragment;
                 fragmentUserSearch.navigateToSendPosActivity(list.get(myHolder.getAdapterPosition()));

@@ -59,7 +59,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="36dp"
-                        android:background="@drawable/circle_wihte">
+                        android:background="@drawable/circle_white">
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/image"
@@ -73,7 +73,7 @@
                             android:layout_width="28dp"
                             android:layout_height="28dp"
                             android:layout_gravity="bottom"
-                            android:background="@drawable/circle_wihte"
+                            android:background="@drawable/circle_white"
                             android:padding="5dp"
                             android:src="@drawable/ic_camera"
                             app:tint="@color/colorPrimary" />

@@ -228,9 +228,7 @@ public class SignUpActivity extends ActivityBase {
             dialog.dismiss();
 
         }
-       /* setUserModel(model);
-        setResult(RESULT_OK);
-        finish();*/
+
     }
 
     private void reAuth() {
